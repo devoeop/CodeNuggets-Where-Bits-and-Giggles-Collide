@@ -1,0 +1,34 @@
+Data Warehouse design:
+
+DimDate:
+
+dateid - Primary Key
+date,
+Year,
+Quarter,
+QuarterName,
+Month,
+Monthname,
+Day,
+Weekday,
+WeekdayName
+
+DimStation:
+
+Stationid - Primary Key
+City
+
+DimTruck: 
+
+Truckid - Primary Key
+TruckType
+
+FactTrips:
+
+Tripid - Primary Key
+Dateid - Foreign Key
+Stationid - Foreign Key
+Truckid - Foreign Key
+Wastecollected
+
+

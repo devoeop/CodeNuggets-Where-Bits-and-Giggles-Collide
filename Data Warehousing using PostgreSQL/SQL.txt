@@ -1,0 +1,47 @@
+Grouping sets query:
+
+select s."StationId", tr."TruckType", sum(f."Wastecollected") as TotalWasteCollected
+from public."FactTrips" as f
+left join public."DimStation" as s
+on f."StationId" = s."StationId"
+left join public."DimTruck" as tr
+on f."Truckid" = tr."Truckid"
+group by grouping sets(s."StationId", tr."TruckType")
+order by s."StationId", tr."TruckType"
+
+Rollup query:
+
+select d."Year", s."StationId", s."City", sum(f."Wastecollected") as TotalWasteCollected
+from public."FactTrips" as f
+left join public."DimDate" as d
+on f."dateid" = d."dateid"
+left join public."DimStation" as s
+on f."StationId" = s."StationId"
+group by rollup(d."Year", s."City", s."StationId")
+order by d."Year", s."City"
+
+Cube query:
+
+select d."Year", s."StationId", s."City", sum(f."Wastecollected") as TotalWasteCollected
+from public."FactTrips" as f
+left join public."DimDate" as d
+on f."dateid" = d."dateid"
+left join public."DimStation" as s
+on f."StationId" = s."StationId"
+group by cube(d."Year", s."City", s."StationId")
+order by d."Year", s."City"
+
+MQT query:
+
+CREATE TABLE max_waste_stats (Stationid, City, MaximumWasteCollected) AS
+	( 	select s."StationId", s."City", tr."TruckType", max(f."Wastecollected") as MaxWasteCollected
+		from public."FactTrips" as f
+		left join public."DimTruck" as tr
+		on f."Truckid" = tr."Truckid"
+		left join public."DimStation" as s
+		on f."StationId" = s."StationId"
+		group by (tr."TruckType", s."City", s."StationId")
+		order by s."StationId" )
+
+
+
