@@ -1,0 +1,24 @@
+We will design a data platform that uses MySQL as an OLTP database, design and implement a data warehouse and generate reports from the data, design a reporting dashboard that reflects the key metrics of the business, and finally, extract data from an OLTP database, transform it and load it into the data warehouse, and then create an ETL pipeline. 
+
+Design the OLTP database for an e-commerce website, populate the OLTP Database with the data provided, and automate the export of the daily incremental data into the data warehouse. 
+
+Design the schema for a data warehouse based on the schema of the OLTP database. Then create the schema and load the data into fact and dimension tables, automate the daily incremental data insertion into the data warehouse, and create Cubes and Rollups to make the reporting easier: 
+
+We will design and create a staging data warehouse environment using PgAdmin and PostgreSQL. 
+We will deploy the production Warehouse for reporting purposes using Db2 on Cloud. 
+The e-commerce company has provided us with sample data and we will start our project by designing a star schema for the warehouse by identifying the columns for the various dimension and fact tables in the schema. 
+We will name your database “softcart” and then use the ERD design tool in PgAdmin to design the table softcartDimDate using fields such as DateID, Month, Monthname, and so on. And the company would like to have the ability to generate reports on a yearly, monthly, weekly, and daily basis. We will use the ERD design tool to design the dimension tables softcartDimCategory, softcartDimCountry, and softcartFactSales. We will also use the ERD design tool to design the required relationships (for example, one-to-one, one-to-many, and so on) among the tables. 
+Then, we will load the data into the data warehouse. Our senior data engineer reviews our design and makes a few improvements to our schema design. The data, as per the improved schema, is available at a link. We will download the data and restore it into a database named “staging” using the pgAdmin tool. And after performing this task, we will take a screenshot showing the success of data restoration.
+
+Create a Business Intelligence dashboard. Create a Cognos data source that points to a data warehouse table, create a bar chart of quarterly sales of cell phones, create a pie chart of sales of electronic goods by category, and create a line chart of total sales per month for a given year. 
+
+Create Data Pipelines to feed the Data Warehouse on a regular basis with new data. And as part of the ETL pipeline, extract data from an OLTP database into CSV format. Then transform the OLTP data to suit the data warehouse schema, and then load the transformed data into the data warehouse. 
+
+Finally, verify that the data is loaded properly. 
+
+We will set up an ETL pipeline using a shell script to extract new transactional data for each day from the OLTP database and load it into the staging data warehouse. 
+First we will extract the transactional data from the ‘sales_data’ table in MySQL. This data should not be more than 4 hours old from the current time. Next, save the data in a CSV file. Then, load the CSV file into a table in the staging warehouse. Lastly, we'll verify that the data loaded correctly in the table of the staging warehouse. 
+Next, we will transform the OLTP data in the staging warehouse to suit the data warehouse schema, read the OLTP data from the ‘sales_data’ table in the staging warehouse, transform the required columns of the ‘sales_data’ table in the warehouse, and load the transformed
+data in the Dimension and Fact tables, and lastly, verify that the transformed data is loaded in the Dimension and Fact tables. 
+Then, we will perform a series of tasks to load the transformed data into the data warehouse. We will export the tables as CSV files for loading into the production warehouse, then verify that the data is loaded properly in the CSV file. 
+Finally, we'll automate the ETL process set up in the shell script. We will set up a cron job to schedule these tasks.
